@@ -57,7 +57,7 @@
           <text value="FSK"/>
         </properties>
       </component>
-      <component id="139b5" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="139b5" class="javax.swing.JComboBox" binding="combo_fsk">
         <constraints>
           <grid row="2" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -213,7 +213,7 @@
           <text value="Filtern:"/>
         </properties>
       </component>
-      <component id="b7213" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+      <component id="b7213" class="javax.swing.JComboBox" binding="combo_filtern">
         <constraints>
           <grid row="4" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -284,30 +284,6 @@
           <text value="Chillflix"/>
         </properties>
       </component>
-      <component id="ae38c" class="javax.swing.JButton" binding="b_speichern">
-        <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Speichern"/>
-        </properties>
-      </component>
-      <component id="d8877" class="javax.swing.JButton" binding="b_ausgeben">
-        <constraints>
-          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Ausgeben"/>
-        </properties>
-      </component>
-      <component id="a2c51" class="javax.swing.JButton" binding="b_herz">
-        <constraints>
-          <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="&lt;3"/>
-        </properties>
-      </component>
       <component id="2a5e1" class="javax.swing.JLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -323,6 +299,30 @@
         </constraints>
         <properties>
           <text value="Lupe"/>
+        </properties>
+      </component>
+      <component id="a2c51" class="javax.swing.JButton" binding="b_herz">
+        <constraints>
+          <grid row="4" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="&lt;3"/>
+        </properties>
+      </component>
+      <component id="d8877" class="javax.swing.JButton" binding="b_ausgeben">
+        <constraints>
+          <grid row="5" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Ausgeben"/>
+        </properties>
+      </component>
+      <component id="ae38c" class="javax.swing.JButton" binding="b_speichern">
+        <constraints>
+          <grid row="4" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Speichern"/>
         </properties>
       </component>
     </children>
