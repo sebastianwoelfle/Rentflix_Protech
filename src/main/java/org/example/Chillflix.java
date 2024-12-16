@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class Chillflix extends JFrame{
     private JPanel Chillflix;
-    private JTextArea textArea1;
     private JComboBox comboBoxStreambar;
     private JButton speichernButton;
     private JButton ausgebenButton;
@@ -26,6 +25,7 @@ public class Chillflix extends JFrame{
     private JRadioButton bt_1Stern;
     private JRadioButton bt_2Stern;
     private JRadioButton bt_3Stern;
+    private JTextArea textArea1;
 
     public Chillflix(){
 
