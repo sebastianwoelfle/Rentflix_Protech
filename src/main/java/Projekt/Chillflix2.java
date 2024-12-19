@@ -37,6 +37,8 @@ public class Chillflix2 extends JFrame{
         gruppierung.add(rb_2stern);
         gruppierung.add(rb_3stern);
 
+        setupDynamicFocusTraversal();
+
 
         b_filtern.addActionListener(new ActionListener() {
             @Override
@@ -51,6 +53,37 @@ public class Chillflix2 extends JFrame{
             }
         });
     }
+
+    private void setupDynamicFocusTraversal() {
+        // Erstelle eine Liste aller relevanten Komponenten in der gewünschten Reihenfolge
+        java.util.List<JComponent> components = new java.util.ArrayList<>();
+        components.add(tf_titel);
+        components.add(combo_genre);
+        components.add(combo_fsk);
+        components.add(tf_dauer);
+        components.add(rb_1stern);
+        components.add(rb_2stern);
+        components.add(rb_3stern);
+        components.add(tf_regesseur);
+        components.add(combo_streambar);
+        components.add(combo_filmtyp);
+
+        // Füge allen Komponenten einen KeyListener hinzu
+        for (int i = 0; i < components.size(); i++) {
+            JComponent current = components.get(i);
+            int nextIndex = (i + 1) % components.size(); // Zyklisch zum ersten zurückkehren
+            JComponent next = components.get(nextIndex);
+
+            current.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        next.requestFocus();
+                    }
+                }
+            });
+        }
+    }
+
     public void initObjekte() {
 
         String titel = tf_titel.getText();
