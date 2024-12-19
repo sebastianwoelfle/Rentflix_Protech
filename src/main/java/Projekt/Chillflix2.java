@@ -53,49 +53,56 @@ public class Chillflix2 extends JFrame{
             }
         });
     }
-    private void save() {
-        // Speichern der Daten aus den Eingabefeldern und Comboboxen
-        String titel = tf_titel.getText();
-        String dauer = tf_dauer.getText();
-        String streambar = combo_streambar.getSelectedItem().toString();
-        String genre = combo_genre.getSelectedItem().toString();
-        String filtern = combo_filmtyp.getSelectedItem().toString();
-        String fsk = combo_fsk.getSelectedItem().toString();
-        String regisseur = tf_regesseur.getText();
+    private void initFilmbib() {
+        filmbib.add("Titel: Inception, Genre: Sci-Fi, Dauer: 148, FSK: 12, Regisseur: Christopher Nolan, Streambar: Netflix, Typ: Spielfilm, Bewertung: 3 Sterne");
+        filmbib.add("Titel: Avatar, Genre: Sci-Fi, Dauer: 162, FSK: 12, Regisseur: James Cameron, Streambar: Netflix, Typ: Spielfilm, Bewertung: 2 Sterne");
+        filmbib.add("Titel: Titanic, Genre: Drama, Dauer: 195, FSK: 12, Regisseur: James Cameron, Streambar: Netflix, Typ: Spielfilm, Bewertung: 3 Sterne");
+        // Weitere Filme hier hinzufügen
+    }
 
-        String bewertung;
+    private void filtern() {
+        String titel = tf_titel.getText().toLowerCase();
+        String genre = combo_genre.getSelectedItem() != null ? combo_genre.getSelectedItem().toString().toLowerCase() : "";
+        String fsk = combo_fsk.getSelectedItem() != null ? combo_fsk.getSelectedItem().toString() : "";
+        String dauer = tf_dauer.getText();
+        String regisseur = tf_regesseur.getText().toLowerCase();
+        String streambar = combo_streambar.getSelectedItem() != null ? combo_streambar.getSelectedItem().toString().toLowerCase() : "";
+        String typ = combo_filmtyp.getSelectedItem() != null ? combo_filmtyp.getSelectedItem().toString().toLowerCase() : "";
+
+        String bewertung = "";
         if (rb_1stern.isSelected()) {
             bewertung = "1 Stern";
         } else if (rb_2stern.isSelected()) {
             bewertung = "2 Sterne";
         } else if (rb_3stern.isSelected()) {
             bewertung = "3 Sterne";
-        } else {
-            bewertung = "Keine Bewertung";
         }
 
-        // Erstellen eines Format-Strings und Hinzufügen zur Liste
-        String filmDetails = String.format(
-                "Titel: %s, Genre: %s, Dauer: %s, FSK: %s, Regisseur: %s, Streambar: %s, Typ: %s, Bewertung: %s",
-                titel, genre, dauer, fsk, regisseur, streambar, filtern, bewertung
-        );
-        filmbib.add(filmDetails);
+        // Suche in der Filmbibliothek
+        textArea1.setText("");
+        for (String film : filmbib) {
+            if ((titel.isEmpty() || film.toLowerCase().contains("titel: " + titel)) &&
+                    (genre.isEmpty() || film.toLowerCase().contains("genre: " + genre)) &&
+                    (fsk.isEmpty() || film.toLowerCase().contains("fsk: " + fsk)) &&
+                    (dauer.isEmpty() || film.toLowerCase().contains("dauer: " + dauer)) &&
+                    (regisseur.isEmpty() || film.toLowerCase().contains("regisseur: " + regisseur)) &&
+                    (streambar.isEmpty() || film.toLowerCase().contains("streambar: " + streambar)) &&
+                    (typ.isEmpty() || film.toLowerCase().contains("typ: " + typ)) &&
+                    (bewertung.isEmpty() || film.toLowerCase().contains("bewertung: " + bewertung.toLowerCase()))) {
 
-        // Benutzerinformation
-        JOptionPane.showMessageDialog(this, "Film erfolgreich gespeichert!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                textArea1.append(film + "\n");
+            }
+        }
+
+        if (textArea1.getText().isEmpty()) {
+            textArea1.setText("Keine passenden Filme gefunden.");
+        }
     }
 
     private void ausgeben() {
-        // TextArea zurücksetzen
-        textArea1.setText("");
-
-        // Alle gespeicherten Filme ausgeben
-        for (String film : filmbib) {
-            textArea1.append(film + "\n");
-        }
-
-        if (filmbib.isEmpty()) {
-            textArea1.setText("Keine Filme gespeichert.");
+        // TextArea zeigt bereits gefilterte Ergebnisse, keine weitere Aktion nötig
+        if (textArea1.getText().isEmpty()) {
+            textArea1.setText("Keine Filme zum Ausgeben.");
         }
     }
 
