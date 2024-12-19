@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.example.Chillflix2">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Projekt.Chillflix2">
   <grid id="27dc6" binding="Chillflix" layout-manager="GridLayoutManager" row-count="7" column-count="13" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="15" left="15" bottom="15" right="15"/>
     <constraints>
-      <xy x="20" y="20" width="1100" height="305"/>
+      <xy x="20" y="20" width="1298" height="408"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -72,23 +72,6 @@
           </model>
         </properties>
       </component>
-      <component id="80da3" class="javax.swing.JCheckBox" binding="check_titel">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="da585" class="javax.swing.JCheckBox" binding="check_fsk">
-        <constraints>
-          <grid row="2" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="8326a" class="javax.swing.JLabel">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -104,14 +87,6 @@
           </grid>
         </constraints>
         <properties/>
-      </component>
-      <component id="9ee04" class="javax.swing.JCheckBox" binding="check_dauer">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
       </component>
       <component id="66d2d" class="javax.swing.JLabel">
         <constraints>
@@ -153,14 +128,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="98fd9" class="javax.swing.JCheckBox" binding="check_regeseur">
-        <constraints>
-          <grid row="3" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
       <scrollpane id="76b3e">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="13" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -197,32 +164,12 @@
           </model>
         </properties>
       </component>
-      <component id="82a8a" class="javax.swing.JCheckBox" binding="check_streamabr">
-        <constraints>
-          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="b0f6e" class="javax.swing.JLabel">
         <constraints>
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Filtern:"/>
-        </properties>
-      </component>
-      <component id="b7213" class="javax.swing.JComboBox" binding="combo_filtern">
-        <constraints>
-          <grid row="4" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <model>
-            <item value="-"/>
-            <item value="Animiert"/>
-            <item value="Realverfilmung"/>
-          </model>
+          <text value="Filmtyp:"/>
         </properties>
       </component>
       <component id="9e9ef" class="javax.swing.JRadioButton" binding="rb_3stern">
@@ -231,30 +178,6 @@
         </constraints>
         <properties>
           <text value="***"/>
-        </properties>
-      </component>
-      <component id="8223e" class="javax.swing.JCheckBox" binding="check_genre">
-        <constraints>
-          <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="330df" class="javax.swing.JCheckBox" binding="check_bewertug">
-        <constraints>
-          <grid row="3" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="a0ba7" class="javax.swing.JCheckBox" binding="check_filtern">
-        <constraints>
-          <grid row="4" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
         </properties>
       </component>
       <hspacer id="c43c7">
@@ -267,14 +190,6 @@
           <grid row="2" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="b811b" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Chillguy"/>
-        </properties>
-      </component>
       <component id="12f" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -317,12 +232,33 @@
           <text value="Ausgeben"/>
         </properties>
       </component>
-      <component id="ae38c" class="javax.swing.JButton" binding="b_speichern">
+      <component id="ae38c" class="javax.swing.JButton" binding="b_filtern">
         <constraints>
           <grid row="4" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Speichern"/>
+          <text value="Filtern"/>
+        </properties>
+      </component>
+      <component id="b811b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="images-removebg-preview.png"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="b7213" class="javax.swing.JComboBox" binding="combo_filmtyp">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="-"/>
+            <item value="Animiert"/>
+            <item value="Real"/>
+          </model>
         </properties>
       </component>
     </children>
