@@ -22,7 +22,7 @@ public class Chillflix2 extends JFrame{
     private JButton b_ausgeben;
     private JTextArea textArea1;
 
-    private ArrayList<Film> filmbib = new ArrayList<>();
+    private ArrayList<String> filmbib = new ArrayList<String>();
 
     public Chillflix2(){
 
@@ -53,9 +53,54 @@ public class Chillflix2 extends JFrame{
             }
         });
     }
+    private void save() {
+        // Speichern der Daten aus den Eingabefeldern und Comboboxen
+        String titel = tf_titel.getText();
+        String dauer = tf_dauer.getText();
+        String streambar = combo_streambar.getSelectedItem().toString();
+        String genre = combo_genre.getSelectedItem().toString();
+        String filtern = combo_filmtyp.getSelectedItem().toString();
+        String fsk = combo_fsk.getSelectedItem().toString();
+        String regisseur = tf_regesseur.getText();
+
+        String bewertung;
+        if (rb_1stern.isSelected()) {
+            bewertung = "1 Stern";
+        } else if (rb_2stern.isSelected()) {
+            bewertung = "2 Sterne";
+        } else if (rb_3stern.isSelected()) {
+            bewertung = "3 Sterne";
+        } else {
+            bewertung = "Keine Bewertung";
+        }
+
+        // Erstellen eines Format-Strings und Hinzufügen zur Liste
+        String filmDetails = String.format(
+                "Titel: %s, Genre: %s, Dauer: %s, FSK: %s, Regisseur: %s, Streambar: %s, Typ: %s, Bewertung: %s",
+                titel, genre, dauer, fsk, regisseur, streambar, filtern, bewertung
+        );
+        filmbib.add(filmDetails);
+
+        // Benutzerinformation
+        JOptionPane.showMessageDialog(this, "Film erfolgreich gespeichert!", "Information", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void ausgeben() {
+        // TextArea zurücksetzen
+        textArea1.setText("");
+
+        // Alle gespeicherten Filme ausgeben
+        for (String film : filmbib) {
+            textArea1.append(film + "\n");
+        }
+
+        if (filmbib.isEmpty()) {
+            textArea1.setText("Keine Filme gespeichert.");
+        }
+    }
 
     private void setupDynamicFocusTraversal() {
-        // Erstelle eine Liste aller relevanten Komponenten in der gewünschten Reihenfolge
+        // Liste aller relevanten Komponenten in der gewünschten Reihenfolge
         java.util.List<JComponent> components = new java.util.ArrayList<>();
         components.add(tf_titel);
         components.add(combo_genre);
@@ -68,7 +113,7 @@ public class Chillflix2 extends JFrame{
         components.add(combo_streambar);
         components.add(combo_filmtyp);
 
-        // Füge allen Komponenten einen KeyListener hinzu
+        // Komponenten einen KeyListener hinzufügen
         for (int i = 0; i < components.size(); i++) {
             JComponent current = components.get(i);
             int nextIndex = (i + 1) % components.size(); // Zyklisch zum ersten zurückkehren
@@ -84,7 +129,8 @@ public class Chillflix2 extends JFrame{
         }
     }
 
-    public void initObjekte() {
+    /*public void initObjekte() {
+//Eingabefelder definieren
 
         String titel = tf_titel.getText();
         String dauer = tf_dauer.getText();
@@ -114,6 +160,8 @@ public class Chillflix2 extends JFrame{
         }
 
     }
+
+     */
 
     public static void main(String[] args) {
         new Chillflix2();
