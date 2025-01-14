@@ -20,14 +20,14 @@ public class Rentflix extends JFrame {
     private JComboBox comboBox_fsk;    //Combobox zur Auswahl der Altersbegrenzung
 
 
-    // TextArea (für die Anzeige gespeicherter Reisen)
+    // TextArea (für die Anzeige gespeicherter Filmen)
     private JTextField tf_auswahlzeitraum; // Auswahlzeitraums zum Ausleihen Eingabe
 
 
     // Buttons (für verschiedene Aktionen)
     private JButton sucheButton;     //Button zum Suchen
-    private JButton speichernButton; //Button zum Speichern des zufor ausgewählten Films und auf TextArea ausgeben
-    private JButton berechnenButton; //Button zum Ausrechnen des Ausleihpreises und als Ergänzung ausgeben
+    private JButton speichernButton; //Button zum Speichern des zuvor ausgewählten Films und auf TextArea ausgeben
+    private JButton preisBerechnenButton; //Button zum Ausrechnen des Ausleihpreises und als Ergänzung ausgeben
     private JButton resetButton;     //Button um alles zu resetten
 
     // Radiobutton (für Bewertungsangabe)
@@ -113,6 +113,8 @@ public class Rentflix extends JFrame {
                     boolean fehlerInFSK = false;
                     boolean fehlerInBewertung = false;
                     boolean fehlerInAusleihzeitraum = false;
+
+                    
 
                     // Ausleihzeitraum überprüfen
                     String Ausleihzeitraum = tf_auswahlzeitraum.getText();
