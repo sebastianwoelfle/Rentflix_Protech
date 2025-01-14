@@ -83,20 +83,18 @@ public class Rentflix extends JFrame {
                 comboBox_genre.setToolTipText("-");
 
 
-                gruppierung.clearSelection();
+                gruppierung.clearSelection(); //Bewertungsauswahl leeren
                 filmliste.clear(); // Liste leeren
                 textArea.setText(""); // TextArea leeren
-
-
-                //Bewertung fehlt noch
-
-                //Könnte oberes mit den comboboxen ersetzen, muss man testen wenn ich die methode aufrufen kann
+                // Gespeicherte Comboboxen zurücksetzen
                 if (comboBox_genre.getItemCount() > 0) {
                     comboBox_genre.setSelectedIndex(0);
                 }
                 if (comboBox_fsk.getItemCount() > 0) {
                     comboBox_fsk.setSelectedIndex(0);
                 }
+
+
             }
         });
 
@@ -203,7 +201,7 @@ public class Rentflix extends JFrame {
                         textArea.append(filmDetails);
                     }
                     JOptionPane.showMessageDialog(Rentflix.this,
-                            treffer.size() + " Treffer verarbeitet. Preise wurden berechnet.",
+                            treffer.size() + " Treffer verarbeitet. Preis wurde berechnet.",
                             "Preisberechnung erfolgreich",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -269,60 +267,85 @@ public class Rentflix extends JFrame {
                         return; // Methode verlassen
                     }
 
-                    //wahrscheinlich falsch(unnötig)( eher speichern der auswahlen)
-                    //Speichern des Films(muss villeicht in eine eigene Methode)
-                    try {
-                        // Ausleihzeitraum prüfen
-                        String auswahlzeitraumText = tf_auswahlzeitraum.getText();
-                        int ausleihzeitraum = Integer.parseInt(auswahlzeitraumText);
+                    // Eingaben des Benutzers abrufen
+                    String genre = (String) comboBox_genre.getSelectedItem();
+                    String fskText = (String) comboBox_fsk.getSelectedItem();
+                    String bewertung = "";
+                    if (radioButton1Stern.isSelected()) bewertung = "1-Stern";
+                    if (radioButton2Sterne.isSelected()) bewertung = "2-Sterne";
+                    if (radioButton3Sterne.isSelected()) bewertung = "3-Sterne";
+                    String ausleihzeitraumText = tf_auswahlzeitraum.getText();
 
-                        // Alle benötigten Felder abrufen
-                        String genre = (String) comboBox_genre.getSelectedItem();
-                        String fsk = (String) comboBox_fsk.getSelectedItem();
+                    // Validierung der Eingaben
+                    boolean fehler = false;
 
+                    if (genre == null || genre.equals("-")) {
+                        errorLabelGenre.setVisible(true);
+                        fehler = true;
+                    } else {
+                        errorLabelGenre.setVisible(false);
+                    }
 
-                        //Bewertung sammeln
-                        ArrayList<String> bewertung = new ArrayList<>();
-                        if (radioButton1Stern.isSelected()) bewertung.add("Bewertung: 1 Stern");
-                        if (radioButton2Sterne.isSelected()) bewertung.add("Bewertung: 2 Stern");
-                        if (radioButton3Sterne.isSelected()) bewertung.add("Bewertung: 3 Stern");
+                    if (fskText == null || fskText.equals("-")) {
+                        errorLabelFSK.setVisible(true);
+                        fehler = true;
+                    } else {
+                        errorLabelFSK.setVisible(false);
+                    }
 
-                        // Überprüft ob die Liste der Bewertungen leer ist
-                        // Wenn die Liste leer ist, wird "Keine Bewertungen" als Standardwert zugewiesen
-                        // Sonst werden die Bewertungen in die Liste hinzugefügt
-                        // Überprüfen, ob die Liste der Bewertungen leer ist
-                        String bewertungText = bewertung.isEmpty()
-                                ? "Keine Bewertung ausgewählt"
-                                : String.join(", ", bewertung);
+                    if (bewertung.isEmpty()) {
+                        errorLabelBewertung.setVisible(true);
+                        fehler = true;
+                    } else {
+                        errorLabelBewertung.setVisible(false);
+                    }
 
-                        // Filminformationen zusammenstellen
-                        String Filme = String.format(
-                                "Film: %s\n" +
-                                        "Filmname: %s\n" +
-                                        "Genre: %s\n" +
-                                        "FSK: %s\n" +
-                                        "Bewertung: %s\n"+
-                                        "Ausleihzeitraum: %d Tage\n" +
-                                        "Verfügbar: %d\n" +
-                                        "Preis pro Tag: %.2f €");// bei berechnen dann Ausleihzeitraum*PreisProTag = Ausleihkosten);
+                    if (!ausleihzeitraumText.matches("\\d+")) {
+                        errorLabelAusleihzeitraum.setVisible(true);
+                        fehler = true;
+                    } else {
+                        errorLabelAusleihzeitraum.setVisible(false);
+                    }
 
+                    if (fehler) {
+                        JOptionPane.showMessageDialog(Rentflix.this, "Bitte beheben Sie die markierten Fehler.", "Eingabefehler", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
 
-                        // TextArea aktualisieren
-                        textArea.setText(""); // TextArea zurücksetzen
-                        for (int i = 0; i < filmliste.size(); i++) {
-                            textArea.append((i + 1) + ". " + filmliste.get(i) + "\n\n"); // Nummerierung und Leerzeile
+                    // Werte umwandeln
+                    int fsk = Integer.parseInt(fskText);
+                    int ausleihzeitraum = Integer.parseInt(ausleihzeitraumText);
+
+                    // Filme aus der Datenbank abrufen
+                    ArrayList<Filme> datenbank = Filme.getfilms();
+                    ArrayList<Filme> gefundeneFilme = new ArrayList<>();
+
+                    // Kriterienprüfung
+                    for (Filme film : datenbank) {
+                        if (film.Genre.equalsIgnoreCase(genre) &&
+                                film.FSK <= fsk &&
+                                film.Bewertung.equalsIgnoreCase(bewertung) &&
+                                film.Ausleihzeitraum >= ausleihzeitraum) {
+                            gefundeneFilme.add(film);
                         }
+                    }
 
-                        // Erfolgsmeldung
-                        JOptionPane.showMessageDialog(Rentflix.this, "Film erfolgreich ausgewählt!",
-                                "Erfolg", JOptionPane.INFORMATION_MESSAGE);
-
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(Rentflix.this, "Ein unerwarteter Fehler ist aufgetreten: " + ex.getMessage(),
-                                "Fehler", JOptionPane.ERROR_MESSAGE);
-
-
-                }}
+                    // Ergebnisse anzeigen
+                    textArea.setText("");
+                    if (gefundeneFilme.isEmpty()) {
+                        textArea.setText("Kein Film erfüllt die Kriterien.");
+                    } else {
+                        for (Filme film : gefundeneFilme) {
+                            String filmDetails = String.format(
+                                    "Name: %s\nGenre: %s\nFSK: %d\nBewertung: %s\nAusleihzeitraum: %.0f Tage\nPreis/Tag: %.2f €\nVerfügbar: %s\n\n",
+                                    film.Name, film.Genre, film.FSK, film.Bewertung, film.Ausleihzeitraum, film.PreisProTag,
+                                    film.Verfuegbar ? "Ja" : "Nein"
+                            );
+                            textArea.append(filmDetails);
+                        }
+                    }
+                }
         });
+                }
+
     }
-}
