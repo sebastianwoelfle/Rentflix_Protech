@@ -1,8 +1,10 @@
 package ProjektNeu;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
-public class Filme {
+public class Filme extends Component {
 
     //Attribute für die filme
     public String Name;
@@ -40,7 +42,7 @@ public class Filme {
     public static ArrayList<Filme> getfilms() {
         ArrayList<Filme> filme = new ArrayList<>();
         //Filme in die Liste Hinzufügen
-        filme.add(new Filme("Sider-Man", "Action", 12, "3-Sterne", 5, 2.50, true));
+        filme.add(new Filme("Spider-Man", "Action", 12, "3-Sterne", 5, 2.50, true));
         filme.add(new Filme("Interstellar", "Sci-Fi",12,"3-Sterne",5,4.50, true));
         filme.add(new Filme("Smile","Horror",18,"2-Sterne",7,2.00,true));
         filme.add(new Filme("Gladiator","Action",16,"3-Sterne",2,5.00,true));
@@ -55,7 +57,6 @@ public class Filme {
 
 
         return filme;
-
 
 
     }

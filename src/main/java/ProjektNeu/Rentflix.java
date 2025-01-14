@@ -100,6 +100,118 @@ public class Rentflix extends JFrame {
             }
         });
 
+        sucheButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Eingabe des Benutzers abrufen
+                String suchbegriff = tf_filmname.getText().trim();
+                if (suchbegriff.isEmpty()) {
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            "Bitte geben Sie einen Filmtitel ein.",
+                            "Eingabefehler",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                // Datenbank abrufen
+                ArrayList<Filme> datenbank = Filme.getfilms();
+                ArrayList<Filme> treffer = new ArrayList<>();
+
+                // Nach Übereinstimmungen suchen
+                for (Filme film : datenbank) {
+                    if (film.Name.toLowerCase().contains(suchbegriff.toLowerCase())) {
+                        treffer.add(film);
+                    }
+                }
+
+                // Treffer anzeigen oder Fehlermeldung ausgeben
+                if (treffer.isEmpty()) {
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            "Kein Film mit dem Namen \"" + suchbegriff + "\" gefunden.",
+                            "Keine Treffer",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    textArea.setText(""); // TextArea zurücksetzen
+                    for (Filme film : treffer) {
+                        String filmDetails = String.format(
+                                "Name: %s\nGenre: %s\nFSK: %d\nBewertung: %s\nAusleihzeitraum: %.0f Tage\nPreis/Tag: %.2f €\nVerfügbar: %s\n\n",
+                                film.Name, film.Genre, film.FSK, film.Bewertung, film.Ausleihzeitraum, film.PreisProTag,
+                                film.Verfuegbar ? "Ja" : "Nein");
+                        textArea.append(filmDetails);
+                    }
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            treffer.size() + " Treffer gefunden.",
+                            "Suche erfolgreich",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        preisBerechnenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Eingabe des Benutzers abrufen
+                String suchbegriff = tf_filmname.getText().trim();
+                String auswahlzeitraumText = tf_auswahlzeitraum.getText().trim();
+
+                // Eingaben validieren
+                if (suchbegriff.isEmpty()) {
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            "Bitte geben Sie einen Filmtitel ein.",
+                            "Eingabefehler",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                if (!auswahlzeitraumText.matches("\\d+")) {
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            "Bitte geben Sie einen gültigen Ausleihzeitraum (nur ganze Zahlen) ein.",
+                            "Ungültige Eingabe",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                int ausleihzeitraum = Integer.parseInt(auswahlzeitraumText);
+
+                // Datenbank abrufen und nach Filmtitel suchen
+                ArrayList<Filme> datenbank = Filme.getfilms();
+                ArrayList<Filme> treffer = new ArrayList<>();
+
+                for (Filme film : datenbank) {
+                    if (film.Name.toLowerCase().contains(suchbegriff.toLowerCase())) {
+                        treffer.add(film);
+                    }
+                }
+
+                // Treffer verarbeiten oder Fehlermeldung ausgeben
+                if (treffer.isEmpty()) {
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            "Kein Film mit dem Namen \"" + suchbegriff + "\" gefunden.",
+                            "Keine Treffer",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    textArea.setText(""); // TextArea zurücksetzen
+                    for (Filme film : treffer) {
+                        // Gesamtpreis berechnen
+                        double gesamtpreis = ausleihzeitraum * film.PreisProTag;
+
+                        // Film-Details mit Preis in der TextArea anzeigen
+                        String filmDetails = String.format(
+                                "Name: %s\nGenre: %s\nFSK: %d\nBewertung: %s\nAusleihzeitraum: %d Tage\nPreis pro Tag: %.2f €\nGesamtpreis: %.2f €\nVerfügbar: %s\n\n",
+                                film.Name, film.Genre, film.FSK, film.Bewertung, ausleihzeitraum, film.PreisProTag, gesamtpreis,
+                                film.Verfuegbar ? "Ja" : "Nein");
+                        textArea.append(filmDetails);
+                    }
+                    JOptionPane.showMessageDialog(Rentflix.this,
+                            treffer.size() + " Treffer verarbeitet. Preise wurden berechnet.",
+                            "Preisberechnung erfolgreich",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+
+
 
         speichernButton.addActionListener(new ActionListener() {
             @Override
