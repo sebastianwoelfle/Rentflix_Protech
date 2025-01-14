@@ -114,7 +114,7 @@ public class Rentflix extends JFrame {
                     boolean fehlerInBewertung = false;
                     boolean fehlerInAusleihzeitraum = false;
 
-                    
+
 
                     // Ausleihzeitraum überprüfen
                     String Ausleihzeitraum = tf_auswahlzeitraum.getText();
@@ -208,6 +208,7 @@ public class Rentflix extends JFrame {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(Rentflix.this, "Ein unerwarteter Fehler ist aufgetreten: " + ex.getMessage(),
                                 "Fehler", JOptionPane.ERROR_MESSAGE);
+
 
                 }}
         });
