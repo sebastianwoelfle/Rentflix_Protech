@@ -27,6 +27,7 @@ public class Filme extends Component {
     }
 
 // wir brauchen nochb eine initobjekte die funktioniert im Tut fragen
+
     private void initObjekte(){
 
         this.Name = "X-Men";

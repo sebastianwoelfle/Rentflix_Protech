@@ -268,6 +268,7 @@ public class Rentflix extends JFrame {
                     }
 
                     // Eingaben des Benutzers abrufen
+
                     String genre = (String) comboBox_genre.getSelectedItem();
                     String fskText = (String) comboBox_fsk.getSelectedItem();
                     String bewertung = "";
