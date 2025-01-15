@@ -328,6 +328,7 @@ public class Rentflix extends JFrame {
 
  */
 
+
                     // Werte umwandeln
                     int fsk = Integer.parseInt(fskText);
                     int ausleihzeitraum = Integer.parseInt(ausleihzeitraumText);
