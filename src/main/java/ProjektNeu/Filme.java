@@ -24,6 +24,7 @@ public class Filme extends Component {
         Ausleihzeitraum = ausleihzeitraum;
         PreisProTag = preisProTag;
         Verfuegbar = verfuegbar;
+
     }
 
 // wir brauchen nochb eine initobjekte die funktioniert im Tut fragen

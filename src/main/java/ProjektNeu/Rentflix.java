@@ -109,6 +109,7 @@ public class Rentflix extends JFrame {
                             "Eingabefehler",
                             JOptionPane.WARNING_MESSAGE);
                     return;
+
                 }
 
                 // Datenbank abrufen
