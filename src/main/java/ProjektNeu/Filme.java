@@ -38,7 +38,7 @@ public class Filme extends Component {
         this.Verfuegbar = true;
         
     }
-
+    //getfilms() -> initfilms()
     public static ArrayList<Filme> getfilms() {
         ArrayList<Filme> filme = new ArrayList<>();
         //Filme in die Liste Hinzufügen

@@ -253,6 +253,18 @@ public class Rentflix extends JFrame {
                     } else {
                         errorLabelFSK.setVisible(false);
                     }
+// bewertungen zu den fehlern hinzufügen
+                   /* if (bewertung.isEmpty()) {
+                        errorLabelBewertung.setVisible(true);
+                        fehler = true;
+
+                    } else {
+                        errorLabelBewertung.setVisible(false);
+                    }
+
+                    */
+
+
 
                     // Wenn Fehler aufgetreten sind, entsprechende Nachricht anzeigen
                     if (fehlerInGenre || fehlerInFSK || fehlerInBewertung || fehlerInAusleihzeitraum) {
@@ -275,7 +287,7 @@ public class Rentflix extends JFrame {
                     if (radioButton2Sterne.isSelected()) bewertung = "2-Sterne";
                     if (radioButton3Sterne.isSelected()) bewertung = "3-Sterne";
                     String ausleihzeitraumText = tf_auswahlzeitraum.getText();
-
+/*
                     // Validierung der Eingaben
                     boolean fehler = false;
 
@@ -307,10 +319,14 @@ public class Rentflix extends JFrame {
                         errorLabelAusleihzeitraum.setVisible(false);
                     }
 
+
+
                     if (fehler) {
                         JOptionPane.showMessageDialog(Rentflix.this, "Bitte beheben Sie die markierten Fehler.", "Eingabefehler", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
+
+ */
 
                     // Werte umwandeln
                     int fsk = Integer.parseInt(fskText);
@@ -324,7 +340,7 @@ public class Rentflix extends JFrame {
                     for (Filme film : datenbank) {
                         if (film.Genre.equalsIgnoreCase(genre) &&
                                 film.FSK <= fsk &&
-                                film.Bewertung.equalsIgnoreCase(bewertung) &&
+                                film.Bewertung.equalsIgnoreCase(bewertung) && //IgnoreCase = ignoriert Groß-und Kleinschreibung
                                 film.Ausleihzeitraum >= ausleihzeitraum) {
                             gefundeneFilme.add(film);
                         }
