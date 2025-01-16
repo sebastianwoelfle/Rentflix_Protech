@@ -11,6 +11,7 @@ public class Rentflix extends JFrame {
     // Hauptkomponenten des UI
     private JPanel RentflixPanel; // Panel
 
+
     // Eingabekomponenten (für die Benutzereingaben)
     private JTextField tf_filmname;    // Filmname Eingabe
     private JTextArea textArea;        //  // TextArea (für die Anzeige gespeicherter Filmen)
