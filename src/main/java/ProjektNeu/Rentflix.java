@@ -141,7 +141,70 @@ public class Rentflix extends JFrame {
             }
         });
 
+        public void initObjekte() {
 
-    }
+            // 12 Filme initialisieren und der Liste hinzufügen
+            Filme f1 = new Filme("Spider-Man", "Action", false, "3-Sterne", 5);
+            Filme f2 = new Filme("Interstellar", "Sci-Fi", false, "3-Sterne", 5);
+            Filme f3 = new Filme("Smile", "Horror", true, "2-Sterne", 7);
+            Filme f4 = new Filme("Gladiator", "Action", false, "3-Sterne", 2);
+            Filme f5 = new Filme("Iron Man", "Sci-Fi", false, "2-Sterne", 9);
+            Filme f6 = new Filme("Fast and Furious X", "Action", false, "1-Stern", 1);
+            Filme f7 = new Filme("Minions", "Kinderfilm", false, "3-Sterne", 14);
+            Filme f8 = new Filme("The Lego Movie 2", "Kinderfilm", false, "1-Stern", 4);
+            Filme f9 = new Filme("Men in Black", "Sci-Fi", false, "3-Sterne", 3);
+            Filme f10 = new Filme("Cast Away", "Abenteuer", false, "2-Sterne", 4);
+            Filme f11 = new Filme("Django Unchained", "Western", false, "3-Sterne", 6);
+            Filme f12 = new Filme("Conjuring", "Horror", true, "2-Sterne", 10);
 
-}
+            filmliste.add(f1);
+            filmliste.add(f2);
+            filmliste.add(f3);
+            filmliste.add(f4);
+            filmliste.add(f5);
+            filmliste.add(f6);
+            filmliste.add(f7);
+            filmliste.add(f8);
+            filmliste.add(f9);
+            filmliste.add(f10);
+            filmliste.add(f11);
+            filmliste.add(f12);
+        }
+
+        public void hinzufuegen() {
+
+            try {
+
+                String name = tf_filmname.getText();
+                // Filmtitel überprüfen
+                if (name.isEmpty()) {
+                    errorLabelFilmname.setVisible(true);
+                    throw new IllegalArgumentException("Bitte geben Sie einen Filmtitel ein.");
+                } else {
+                    errorLabelFilmname.setVisible(false);
+                }
+
+                String genre = comboBox_genre.getSelectedItem().toString();
+                // Genre überprüfen
+                if (genre == null || genre.equals("-")) {
+                    errorLabelGenre.setVisible(true); // Fehlerlabel für Genre anzeigen
+                    throw new IllegalArgumentException("Bitte wählen Sie ein Genre aus.");
+                } else {
+                    //errorLabelGenre.setVisible(false);
+                }
+
+                boolean fsk = radio_abAchtzehn.isSelected();
+
+                String bewertung = bewertung();
+                // Bewergung überprüfen
+                if (bewertung.isEmpty()) {
+                    errorLabelBewertung.setVisible(true);
+                    throw new IllegalArgumentException("Bitte wählen Sie eine Bewertungsstufe aus.");
+                } else {
+                    errorLabelBewertung.setVisible(false);
+                }
+
+
+            }
+
+        }
