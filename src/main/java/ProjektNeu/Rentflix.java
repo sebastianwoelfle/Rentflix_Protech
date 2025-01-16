@@ -204,6 +204,85 @@ public class Rentflix extends JFrame {
                     errorLabelBewertung.setVisible(false);
                 }
 
+                String ausleihZeitraumStr = tf_auswahlzeitraum.getText();
+                // Ausleihzeitraum überprüfen
+                if (ausleihZeitraumStr.isEmpty()) {
+                    errorLabelAusleihzeitraum.setVisible(true);
+                    throw new IllegalArgumentException("Bitte geben Sie einen Ausleihzeitraum an.");
+                } else {
+                    errorLabelAusleihzeitraum.setVisible(false);
+                }
+
+                int ausleihZeitraum = Integer.parseInt(ausleihZeitraumStr);
+
+                Filme f = new Filme(name, genre, fsk, bewertung, ausleihZeitraum);
+
+                filmliste.add(f);
+
+                JOptionPane.showMessageDialog(null, "Film wurde erfolgreich hinzugefügt");
+
+            } catch (NumberFormatException e) {
+                errorLabelAusleihzeitraum.setVisible(true); // Setzen des Labels auf true, falls String statt Zahl eingegeben wurde
+                JOptionPane.showMessageDialog(null, "Ungültiger Ausleihzeitraum: Der Ausleihzeitraum muss im Zahlenformat angegeben werden");
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+
+        // Methode, um Rückgabewert für jeweilgen Radiobutton (Bewertungsangabe) zu definieren
+        public String bewertung() {
+
+            try {
+                if (radioButton1Stern.isSelected()) {
+                    return "1-Stern";
+                }
+                if (radioButton2Sterne.isSelected()) {
+                    return "2-Sterne";
+                }
+                if (radioButton3Sterne.isSelected()) {
+                    return "3-Sterne";
+                }
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, "Bitte geben Sie eine Bewertung ab");
+            }
+
+            return "";
+
+        }
+
+        public void ausgeben() {
+
+            for (Filme film : filmliste) {
+                // Ausgabe der Liste, wenn diese Filme beinhaltet, ansonsten Meldefenster anzeigen
+                if (!filmliste.isEmpty()) {
+                    textArea.append(film.toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Es befinden sich keine Filme in Ihrer Liste.");
+                }
+            }
+        }
+
+        public void clear() {
+
+            // Textfelder leeren
+            tf_filmname.setText("");
+            tf_auswahlzeitraum.setText("");
+            tf_gesamtpreis.setText("");
+
+            // Combobox zurücksetzen
+            comboBox_genre.setSelectedIndex(0);
+
+            // Radiobutton zurücksetzen
+            radio_abAchtzehn.setSelected(false);
+            gruppierung.clearSelection();
+
+            // Liste leeren
+            filmliste.clear(); // Liste leeren
+
+            // TextArea leeren
+            textArea.setText("");
+        }
+
 
             }
 
