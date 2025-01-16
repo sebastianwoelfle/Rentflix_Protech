@@ -32,6 +32,7 @@ public class Filme {
         return ausleihzeitraum;
     }
 
+
     //Ausgabe in der Text-Area
     public String toString() {
         return "Name: " + name + "\nGenre: " + genre + "\nAb 18: " + (fsk ? "Ja" : "Nein") + "\nBewertung: " + bewertung + "\nAusleihzeitraum: " + ausleihzeitraum

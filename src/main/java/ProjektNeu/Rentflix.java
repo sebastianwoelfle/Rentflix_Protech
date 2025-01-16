@@ -75,6 +75,7 @@ public class Rentflix extends JFrame {
         errorLabelBewertung.setVisible(false);
         errorLabelAusleihzeitraum.setVisible(false);
 
+
         // Aufruf der Methode initObjekte(), damit beim Programmstart Filme in der Liste vorhanden sind
         initObjekte();
 
