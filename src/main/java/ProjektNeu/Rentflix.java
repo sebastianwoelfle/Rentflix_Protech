@@ -121,6 +121,7 @@ public class Rentflix extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 ausgeben();
+
             }
         });
 
