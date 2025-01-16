@@ -143,5 +143,4 @@ public class Rentflix extends JFrame {
 
     }
 
-
 }
